@@ -1,13 +1,11 @@
 import numpy as np
-
 import sys
 import os
-import numpy as np
 import matplotlib.pyplot as plt
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-from v2.config import *
+from v3.config import *
 
 def get_displaced_goal(step, offset_dist, offset_angle_rad, lookahead_steps=0):
     """
