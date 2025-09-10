@@ -143,9 +143,15 @@ def main(offset_dist=2.0, offset_angle_deg=90.0):
 
         plt.pause(0.001)
 
+
+    # Ensure output directory exists
+    output_dir = os.path.join(os.path.dirname(__file__), '../output')
+    os.makedirs(output_dir, exist_ok=True)
+
     # Save GIF
+    gif_path = os.path.join(output_dir, "tracking_animation.gif")
     gif_frames[0].save(
-        "tracking_animation.gif",
+        gif_path,
         save_all=True,
         append_images=gif_frames[1:],
         duration=50,
@@ -154,7 +160,8 @@ def main(offset_dist=2.0, offset_angle_deg=90.0):
     plt.close(fig)
 
     # Save waypoints
-    with open("waypoints.txt", "w") as f:
+    waypoints_path = os.path.join(output_dir, "waypoints.txt")
+    with open(waypoints_path, "w") as f:
         f.write("# Arrow 1\n")
         for i in range(len(guide_trail)):
             x, y = guide_trail[i]
@@ -174,8 +181,10 @@ def main(offset_dist=2.0, offset_angle_deg=90.0):
         for pt in trajectory:
             f.write(f"{pt[0]:.3f}, {pt[1]:.3f}, {pt[2]:.3f}\n")
 
-    print("\nAverage Distance Error:", np.mean(distance_errors))
-    print("Average Angle Error (deg):", np.mean(angle_errors))
+    print(f"\nAverage Distance Error: {np.mean(distance_errors)}")
+    print(f"Average Angle Error (deg): {np.mean(angle_errors)}")
+    print(f"GIF saved to: {gif_path}")
+    print(f"Waypoints saved to: {waypoints_path}")
     plt.show()
 
 if __name__ == "__main__":

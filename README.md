@@ -8,3 +8,10 @@ Notes:
 for ros2 do in every new terminal:
 
 source /opt/ros/humble/setup.bash
+
+conda create -n follower_robot_env python=3.10
+
+conda activate follower_robot_env
+
+run cales code: 
+python code_cale/v3/main.py
