@@ -1,0 +1,7 @@
+robot_simulator:
+  ros__parameters:
+    initial_x: 1.0
+    initial_y: 2.0
+    initial_yaw: 0.7854   # 45 degrees in radians
+    publish_rate: 50.0
+    cmd_timeout: 0.5      # seconds before robot stops if no new cmd_vel
