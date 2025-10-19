@@ -10,6 +10,8 @@ setup(
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
+        ('share/' + package_name + '/config', ['config/p_controller_params.yaml']),
+        ('share/' + package_name + '/launch', ['launch/robot_p_control.launch.py']),
     ],
     install_requires=['setuptools'],
     zip_safe=True,

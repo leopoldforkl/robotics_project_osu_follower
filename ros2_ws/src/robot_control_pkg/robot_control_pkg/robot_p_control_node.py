@@ -14,6 +14,20 @@ class RobotPControlNode(Node):
     def __init__(self):
         super().__init__('robot_p_control_node')
         
+        # Declare parameters
+        self.declare_parameters(
+            namespace='',
+            parameters=[
+                ('kp_linear', 3.0),
+                ('kp_angular', 3.0),
+                ('max_linear_velocity', 2.0),
+                ('max_angular_velocity', 1.0),
+                ('x_offset', 1.0),
+                ('y_offset', 0.0),
+                ('angle_offset', 0.7854)
+            ]
+        )
+        
         # Create publisher for cmd_vel
         self.cmd_vel_pub = self.create_publisher(Twist, '/cmd_vel', 10)
         
@@ -68,12 +82,24 @@ class RobotPControlNode(Node):
             else:
                 prev_target_pos = self.prev_target_position.copy()
             
+            # Get controller parameters
+            controller_params = {
+                'kp_linear': self.get_parameter('kp_linear').value,
+                'kp_angular': self.get_parameter('kp_angular').value,
+                'max_linear_velocity': self.get_parameter('max_linear_velocity').value,
+                'max_angular_velocity': self.get_parameter('max_angular_velocity').value,
+                'x_offset': self.get_parameter('x_offset').value,
+                'y_offset': self.get_parameter('y_offset').value,
+                'angle_offset': self.get_parameter('angle_offset').value
+            }
+            
             # Compute command velocities using the controller
             cmd_vel_array = compute_cmd_vel(
                 target_position, 
                 prev_target_pos, 
                 self.prev_cmd_vel, 
-                dt_ms
+                dt_ms,
+                controller_params
             )
             
             # Update state for next iteration

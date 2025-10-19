@@ -3,3 +3,4 @@ ros2 run robot_sim_pkg robot_simulator
 ros2 run target_movement_pkg tf_publisher_node
 ros2 launch robot_sim_pkg robot_simulator.launch.py
 ros2 run robot_control_pkg robot_p_control_node
+ros2 launch robot_control_pkg robot_p_control.launch.py
