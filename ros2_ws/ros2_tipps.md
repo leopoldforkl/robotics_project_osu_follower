@@ -9,13 +9,17 @@
 Create a new ROS 2 Galactic container with GUI support and workspace volume mounting:
 
 ```bash
+docker build -t ros2-galactic-dev .
+```
+
+```bash
 docker run -it \
     --name ros2-galactic-dev \
     --env="DISPLAY" \
     --env="QT_X11_NO_MITSHM=1" \
     --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
     --volume="/home/vcipl/Documents/robotics_project/robotics_project_osu_follower/ros2_ws:/root/workspace:rw" \
-    osrf/ros:galactic-desktop
+    ros2-galactic-dev
 ```
 
 After creation, your container will show up as `ros2-galactic-dev` when you list containers:
