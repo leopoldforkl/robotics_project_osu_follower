@@ -8,6 +8,8 @@ Panels:
         - /Status1
         - /Axes1
         - /Axes2
+        - /Axes3
+        - /Axes4
       Splitter Ratio: 0.5
     Tree Height: 555
   - Class: rviz_common/Selection
@@ -50,6 +52,13 @@ Visualization Manager:
       Reference Frame: <Fixed Frame>
       Value: true
     - Class: rviz_default_plugins/Axes
+      Enabled: false
+      Length: 1
+      Name: Axes
+      Radius: 0.10000000149011612
+      Reference Frame: world
+      Value: false
+    - Class: rviz_default_plugins/Axes
       Enabled: true
       Length: 1
       Name: Axes
@@ -62,6 +71,13 @@ Visualization Manager:
       Name: Axes
       Radius: 0.10000000149011612
       Reference Frame: target
+      Value: true
+    - Class: rviz_default_plugins/Axes
+      Enabled: true
+      Length: 0.5
+      Name: Axes
+      Radius: 0.10000000149011612
+      Reference Frame: robot_sim
       Value: true
   Enabled: true
   Global Options:
@@ -124,10 +140,10 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.785398006439209
+      Pitch: 0.9253978729248047
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 0.785398006439209
+      Yaw: 0.41539835929870605
     Saved: ~
 Window Geometry:
   Displays:
