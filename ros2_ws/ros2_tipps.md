@@ -8,6 +8,12 @@
 
 Create a new ROS 2 Galactic container with GUI support and workspace volume mounting:
 
+On host to access display: (might be needed)
+```bash
+xhost +local:docker
+```
+
+
 ```bash
 docker build -t ros2-galactic-dev .
 ```

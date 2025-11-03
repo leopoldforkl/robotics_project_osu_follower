@@ -12,3 +12,6 @@ robot_p_control_node:
     x_offset: 1.0         # Target offset in x direction (m)
     y_offset: 0.0         # Target offset in y direction (m)
     angle_offset: 0.7854  # Target angle offset (rad) - pi/4 = 45 degrees
+
+    # Robot speed multiplier
+    speed: 1.0            # Multiplier for robot speed [0.0, 1.0]
