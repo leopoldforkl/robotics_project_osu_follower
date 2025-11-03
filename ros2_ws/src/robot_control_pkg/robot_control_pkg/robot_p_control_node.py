@@ -24,7 +24,8 @@ class RobotPControlNode(Node):
                 ('max_angular_velocity', 1.0),
                 ('x_offset', 1.0),
                 ('y_offset', 0.0),
-                ('angle_offset', 0.7854)
+                ('angle_offset', 0.7854),
+                ('speed', 1.0)
             ]
         )
         
@@ -90,12 +91,16 @@ class RobotPControlNode(Node):
                 'max_angular_velocity': self.get_parameter('max_angular_velocity').value,
                 'x_offset': self.get_parameter('x_offset').value,
                 'y_offset': self.get_parameter('y_offset').value,
-                'angle_offset': self.get_parameter('angle_offset').value
+                'angle_offset': self.get_parameter('angle_offset').value,
+                'speed': self.get_parameter('speed').value
             }
+
+            target_orientation = controller_params['angle_offset']  # Placeholder for target orientation TODO get from skeleton tracker
             
             # Compute command velocities using the controller
             cmd_vel_array = compute_cmd_vel(
-                target_position, 
+                target_position,
+                target_orientation,
                 prev_target_pos, 
                 self.prev_cmd_vel, 
                 dt_ms,

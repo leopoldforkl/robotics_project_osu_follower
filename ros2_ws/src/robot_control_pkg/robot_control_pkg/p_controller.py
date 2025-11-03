@@ -4,13 +4,14 @@ import numpy as np
 import math
 
 
-def compute_cmd_vel(target_position, prev_target_position, prev_cmd_vel, dt_ms, controller_params):
+def compute_cmd_vel(target_position, target_orientation, prev_target_position, prev_cmd_vel, dt_ms, controller_params):
     """
     Compute command velocities based on target position relative to robot.
     
     Args:
         target_position (np.ndarray): 3x1 numpy array [x, y, z] of target position
                                     in robot_sim frame coordinates
+        target_orientation (float): Target orientation in radians
         prev_target_position (np.ndarray): 3x1 numpy array [x, y, z] of target position
                                          from previous timestep
         prev_cmd_vel (np.ndarray): 6x1 numpy array [vx, vy, vz, wx, wy, wz] of previous
@@ -22,7 +23,8 @@ def compute_cmd_vel(target_position, prev_target_position, prev_cmd_vel, dt_ms, 
         np.ndarray: 6x1 numpy array [vx, vy, vz, wx, wy, wz] command velocities
     """
     
-    # Extract parameters
+    # === Extract Parameters ===
+
     Kp_linear = controller_params['kp_linear']
     Kp_angular = controller_params['kp_angular']
     max_linear_vel = controller_params['max_linear_velocity']
@@ -30,13 +32,11 @@ def compute_cmd_vel(target_position, prev_target_position, prev_cmd_vel, dt_ms, 
     x_offset = controller_params['x_offset']
     y_offset = controller_params['y_offset']
     angle_offset = controller_params['angle_offset']
-    vx = Kp_linear * (target_position[0] - x_offset)
-    vy = Kp_linear * (target_position[1] - y_offset)
+    speed = controller_params.get('speed', 1.0)
 
-    # Angular control:
-    Kp_angular = controller_params['kp_angular']
-    angle_offset = controller_params['angle_offset']
+    # === Angular Control ===
     
+    ''' Not needed for now
     # Convert dt to seconds
     dt = dt_ms / 1000.0
     
@@ -85,16 +85,24 @@ def compute_cmd_vel(target_position, prev_target_position, prev_cmd_vel, dt_ms, 
     # Compute signed angle in radians (-pi to pi)
     angle_error = np.arctan2(cross, dot)
 
+    '''
+
+    angle_error = target_orientation - angle_offset # not sure if sign is correct (+/-)
 
     # use p controller to compute angular velocity
-    wz = Kp_angular * (angle_error - angle_offset)
+    wz = Kp_angular * angle_error
 
     # Apply velocity limits using parameters
     if wz > max_angular_vel:
         wz = max_angular_vel
     elif wz < -max_angular_vel:
         wz = -max_angular_vel
-    
+
+    # === Linear Control ===
+
+    vx = Kp_linear * (target_position[0] - x_offset)
+    vy = Kp_linear * (target_position[1] - y_offset)
+
     # limit linear velocities using parameters
     if vx > max_linear_vel:
         vx = max_linear_vel
@@ -105,6 +113,8 @@ def compute_cmd_vel(target_position, prev_target_position, prev_cmd_vel, dt_ms, 
     elif vy < -max_linear_vel:
         vy = -max_linear_vel
 
-    cmd_vel = np.array([vx, vy, 0.0, 0.0, 0.0, wz])
+    # === Set Command Velocities ===
+
+    cmd_vel = np.array([vx, vy, 0.0, 0.0, 0.0, wz]) * speed
     
     return cmd_vel
