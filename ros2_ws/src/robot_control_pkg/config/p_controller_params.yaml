@@ -1,0 +1,17 @@
+robot_p_control_node:
+  ros__parameters:
+    # P-Controller gains
+    kp_linear: 3.0        # Proportional gain for linear control
+    kp_angular: 1.5       # Proportional gain for angular control
+    
+    # Maximum velocities (safety limits)
+    max_linear_velocity: 2.0    # m/s
+    max_angular_velocity: 1.0   # rad/s
+    
+    # Control offsets
+    x_offset: 1.0         # Target offset in x direction (m)
+    y_offset: 0.0         # Target offset in y direction (m)
+    angle_offset: 0.7854  # Target angle offset (rad) - pi/4 = 45 degrees
+
+    # Robot speed multiplier
+    speed: 1.0            # Multiplier for robot speed [0.0, 1.0]
