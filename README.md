@@ -157,6 +157,8 @@ If operating the robot without a physical display, configure a virtual display:
 
 > **Note:** After this configuration, the physical display port will be disabled, but NoMachine will function with the virtual display.
 
+> **Note:** If you want to undo it just remove the config file and reboot: sudo rm /etc/X11/xorg.conf.d/10-virtual.conf.
+
 ### Step 3: Internet Sharing (Optional)
 
 Enable the robot to access the internet through the development PC's connection.
@@ -478,6 +480,23 @@ rviz2
 
 ## Nuitrack
 t.b.d.
+
+## Known Issues
+
+### Log Files Filling Disk Space
+
+**Issue:** `/var/log/uvcdynctrl-udev.log` can grow excessively (observed 23GB), filling system disk.
+
+**Diagnosis:**
+```bash
+df -h                    # Check disk usage
+sudo du -sh /var/log/*   # Identify large log files
+```
+
+**Fix:**
+```bash
+sudo truncate -s 0 /var/log/uvcdynctrl-udev.log
+```
 
 ## License
 
