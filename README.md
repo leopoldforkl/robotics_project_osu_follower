@@ -218,6 +218,8 @@ ping google.com    # Test DNS resolution
 
 > **Troubleshooting:** If you need to identify the correct IP addresses and interface names, run `ip route` on both devices. You can provide this output to ChatGPT or another AI assistant for guidance.
 
+> **Tip:** You can also use tailscale instead of the Hotspot connection, if you connect the robot to the internet via wifi.
+
 ## Docker-Based ROS 2 Development Environment
 
 ### Prerequisites
@@ -477,9 +479,38 @@ ros2 run tf2_tools view_frames
 # Launch RViz2 for visualization
 rviz2
 ```
+## Use Rosmaster for Skeleton Tracking
+
+Bring up the camera:
+```bash
+ros2 launch yahboomcar_bringup yahboomcar_bringup_X3_launch.py
+ros2 launch astra_camera astro_pro_plus.launch.xml
+```
+
+Then launch the tracker (in a terminal with display via Nomachine!)
+```bash
+cd /home/jetson/Github/ai-media-pipe
+python HandTrackingROS.py
+#or
+python PosEstimationROS.py
+#or
+python skeleton_publisher.py
+```
+
+If you launch `skeleton_publisher.py` you can open `rviz2` with a second terminal and open the config
+`/home/jetson/Github/robotics_project_osu_follower/ros2_ws/rviz2_configs/skeleton_vizualization.rviz`
+you will then see the 3d sceleton.
+
+> **Note:** Uses https://github.com/AnanthaKannan/ai-media-pipe which also has agreat article https://medium.com/@sreeananthakannan/full-body-tracking-c7c4cf68bb9d
+
 
 ## Nuitrack
-t.b.d.
+Status: I am able to open the video stream of the both webcams:
+ffplay /dev/video0 will open the Astra pro
+ffplay /dev/video2 will open the default rosmaster camera
+
+Nuitrack However does not detect the sensors on the rosmaster.
+
 
 ## Known Issues
 
