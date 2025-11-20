@@ -524,6 +524,15 @@ docker run -it \
       ros2-galactic-dev
 ```
 
+For full sceleton tracker open second terminal, while camera publisher is running:
+```bash
+cd skeleton_tracking_scripts/
+pip install -r requirements.txt
+apt-get install -y python3-tk
+python3 pose_skeleton_publisher.py
+```
+
+
 
 ## Nuitrack
 Status: I am able to open the video stream of the both webcams:
