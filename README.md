@@ -251,6 +251,7 @@ ping google.com    # Test DNS resolution
        --name ros2-galactic-dev \
        --env="DISPLAY" \
        --env="QT_X11_NO_MITSHM=1" \
+       --device=/dev/video0:/dev/video0 \
        --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
        --volume="/home/vcipl/Documents/robotics_project/robotics_project_osu_follower/ros2_ws:/root/workspace:rw" \
        ros2-galactic-dev
@@ -502,6 +503,26 @@ If you launch `skeleton_publisher.py` you can open `rviz2` with a second termina
 you will then see the 3d sceleton.
 
 > **Note:** Uses https://github.com/AnanthaKannan/ai-media-pipe which also has agreat article https://medium.com/@sreeananthakannan/full-body-tracking-c7c4cf68bb9d
+
+### Testing in Docker Environment
+
+Inside your Docker-Container:
+```bash
+cd skeleton_tracking_scripts/
+python3 camera_publisher.py
+```
+
+That should give you an livestream of the camera. If not you might have to change this configuration:
+```bash
+docker run -it \
+      --name ros2-galactic-dev \
+      --env="DISPLAY" \
+      --env="QT_X11_NO_MITSHM=1" \
+      --device=/dev/video0:/dev/video0 \
+      --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
+      --volume="/home/vcipl/Documents/robotics_project/robotics_project_osu_follower/ros2_ws:/root/workspace:rw" \
+      ros2-galactic-dev
+```
 
 
 ## Nuitrack
