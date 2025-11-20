@@ -1,0 +1,12 @@
+mediapipe
+pybind11==2.12.0
+pybind11-global==2.12.0
+opencv-python
+wheel
+numpy
+av # for h264 decoding
+pygame # for visualization
+pynput # for keyboard input
+matplotlib
+scipy
+pillow
