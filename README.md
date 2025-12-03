@@ -494,13 +494,8 @@ cd /home/jetson/Github/ai-media-pipe
 python HandTrackingROS.py
 #or
 python PosEstimationROS.py
-#or
-python skeleton_publisher.py
 ```
 
-If you launch `skeleton_publisher.py` you can open `rviz2` with a second terminal and open the config
-`/home/jetson/Github/robotics_project_osu_follower/ros2_ws/rviz2_configs/skeleton_vizualization.rviz`
-you will then see the 3d sceleton.
 
 > **Note:** Uses https://github.com/AnanthaKannan/ai-media-pipe which also has agreat article https://medium.com/@sreeananthakannan/full-body-tracking-c7c4cf68bb9d
 
@@ -531,6 +526,10 @@ pip install -r requirements.txt
 apt-get install -y python3-tk
 python3 pose_skeleton_publisher.py
 ```
+
+If you launch `pose_skeleton_publisher.py` you can open `rviz2` with a second terminal and open the config
+`/home/jetson/Github/robotics_project_osu_follower/ros2_ws/rviz2_configs/skeleton_vizualization.rviz`
+you will then see the 3d sceleton.
 
 
 
