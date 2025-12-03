@@ -507,7 +507,7 @@ cd skeleton_tracking_scripts/
 python3 camera_publisher.py
 ```
 
-That should give you an livestream of the camera. If not you might have to change this configuration:
+That should give you an livestream of the camera. If not you might have to change to this configuration:
 ```bash
 docker run -it \
       --name ros2-galactic-dev \
@@ -519,7 +519,12 @@ docker run -it \
       ros2-galactic-dev
 ```
 
-For full sceleton tracker open second terminal, while camera publisher is running:
+and enable display forwarding on host:
+```bash
+xhost +local:docker
+```
+
+For full sceleton tracker open second terminal, while camera publisher is running (there will be errors during pip install that you can ignore):
 ```bash
 cd skeleton_tracking_scripts/
 pip install -r requirements.txt
