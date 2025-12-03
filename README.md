@@ -494,13 +494,8 @@ cd /home/jetson/Github/ai-media-pipe
 python HandTrackingROS.py
 #or
 python PosEstimationROS.py
-#or
-python skeleton_publisher.py
 ```
 
-If you launch `skeleton_publisher.py` you can open `rviz2` with a second terminal and open the config
-`/home/jetson/Github/robotics_project_osu_follower/ros2_ws/rviz2_configs/skeleton_vizualization.rviz`
-you will then see the 3d sceleton.
 
 > **Note:** Uses https://github.com/AnanthaKannan/ai-media-pipe which also has agreat article https://medium.com/@sreeananthakannan/full-body-tracking-c7c4cf68bb9d
 
@@ -512,7 +507,7 @@ cd skeleton_tracking_scripts/
 python3 camera_publisher.py
 ```
 
-That should give you an livestream of the camera. If not you might have to change this configuration:
+That should give you an livestream of the camera. If not you might have to change to this configuration:
 ```bash
 docker run -it \
       --name ros2-galactic-dev \
@@ -523,6 +518,24 @@ docker run -it \
       --volume="/home/vcipl/Documents/robotics_project/robotics_project_osu_follower/ros2_ws:/root/workspace:rw" \
       ros2-galactic-dev
 ```
+
+and enable display forwarding on host:
+```bash
+xhost +local:docker
+```
+
+For full sceleton tracker open second terminal, while camera publisher is running (there will be errors during pip install that you can ignore):
+```bash
+cd skeleton_tracking_scripts/
+pip install -r requirements.txt
+apt-get install -y python3-tk
+python3 pose_skeleton_publisher.py
+```
+
+If you launch `pose_skeleton_publisher.py` you can open `rviz2` with a second terminal and open the config
+`/home/jetson/Github/robotics_project_osu_follower/ros2_ws/rviz2_configs/skeleton_vizualization.rviz`
+you will then see the 3d sceleton.
+
 
 
 ## Nuitrack
