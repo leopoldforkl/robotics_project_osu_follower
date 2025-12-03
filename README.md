@@ -6,6 +6,8 @@ This project implements an autonomous human-following robot system using the Yah
 
 **Hardware Platform:** [Yahboom Rosmaster X3](https://www.yahboom.net/study/ROSMASTER-X3)
 
+<img src="media/robot_x3.jpg" alt="Yahboom Rosmaster X3" width="60%">
+
 **Primary Objective:** Implement autonomous tracking of walking humans to facilitate enhanced gait analysis studies.
 
 ## Repository Structure
@@ -481,6 +483,15 @@ ros2 run tf2_tools view_frames
 rviz2
 ```
 ## Use Rosmaster for Skeleton Tracking
+
+<div style="display: inline-block; width: 30%; text-align: center;">
+  <img src="media/skeleton_docker.gif" alt="Skeleton Tracking Docker" width="100%">
+  <p><em>running in docker</em></p>
+</div>
+<div style="display: inline-block; width: 30%; text-align: center;">
+  <img src="media/skeleton_robot.gif" alt="Skeleton Tracking Robot" width="100%">
+  <p><em>running on rosmaster</em></p>
+</div>
 
 Bring up the camera:
 ```bash
