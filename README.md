@@ -484,14 +484,18 @@ rviz2
 ```
 ## Use Rosmaster for Skeleton Tracking
 
-<div style="display: inline-block; width: 30%; text-align: center;">
-  <img src="media/skeleton_docker.gif" alt="Skeleton Tracking Docker" width="100%">
-  <p><em>running in docker</em></p>
-</div>
-<div style="display: inline-block; width: 30%; text-align: center;">
-  <img src="media/skeleton_robot.gif" alt="Skeleton Tracking Robot" width="100%">
-  <p><em>running on rosmaster</em></p>
-</div>
+<table>
+  <tr>
+    <td style="text-align: center; padding-right: 20px;">
+      <img src="media/skeleton_docker.gif" alt="Skeleton Tracking Docker" width="300"><br>
+      <em>running in docker</em>
+    </td>
+    <td style="text-align: center;">
+      <img src="media/skeleton_robot.gif" alt="Skeleton Tracking Robot" width="300"><br>
+      <em>running on rosmaster</em>
+    </td>
+  </tr>
+</table>
 
 Bring up the camera:
 ```bash
