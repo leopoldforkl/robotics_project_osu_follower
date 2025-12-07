@@ -580,11 +580,11 @@ sudo truncate -s 0 /var/log/uvcdynctrl-udev.log
 
 ## License
 
-[Specify your license here]
+t.b.d.
 
 ## Contact
 
-[Specify contact information or project maintainer]
+t.b.d.
 
 ## Acknowledgments
 
